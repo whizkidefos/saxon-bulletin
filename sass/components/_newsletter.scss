@@ -1,0 +1,51 @@
+.newsletter-section {
+    .newsletter-form {
+        max-width: 500px;
+        margin: 0 auto;
+        
+        .input-group {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-control {
+            border-right: none;
+            
+            &:focus {
+                box-shadow: none;
+            }
+        }
+        
+        .btn {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+        
+        .alert {
+            margin-top: 1rem;
+            text-align: center;
+        }
+    }
+}
+
+// Dark mode styles
+.dark-mode {
+    .newsletter-section {
+        background-color: lighten($dark-bg, 3%);
+        
+        .newsletter-form {
+            .input-group {
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .form-control {
+                background-color: lighten($dark-bg, 5%);
+                border-color: lighten($dark-bg, 10%);
+                color: $dark-text;
+                
+                &::placeholder {
+                    color: rgba($dark-text, 0.6);
+                }
+            }
+        }
+    }
+}

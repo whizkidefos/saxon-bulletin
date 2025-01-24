@@ -1,0 +1,53 @@
+.social-media-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    
+    .social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        color: $light-bg;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-3px);
+        }
+        
+        &.facebook {
+            background-color: #1877f2;
+            
+            &:hover {
+                background-color: darken(#1877f2, 10%);
+            }
+        }
+        
+        &.twitter {
+            background-color: #1da1f2;
+            
+            &:hover {
+                background-color: darken(#1da1f2, 10%);
+            }
+        }
+        
+        &.instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+            
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+        
+        &.linkedin {
+            background-color: #0077b5;
+            
+            &:hover {
+                background-color: darken(#0077b5, 10%);
+            }
+        }
+    }
+}

@@ -38,3 +38,8 @@ function saxon_enqueue_scripts() {
     ));
 }
 add_action('wp_enqueue_scripts', 'saxon_enqueue_scripts');
+
+function saxon_register_widgets() {
+    register_widget('Saxon_Social_Media_Widget');
+}
+add_action('widgets_init', 'saxon_register_widgets');
