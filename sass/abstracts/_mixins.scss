@@ -1,0 +1,29 @@
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+      @media (min-width: map-get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      @warn "Breakpoint '#{$breakpoint}' not found in $breakpoints map.";
+    }
+  }
+  
+  @mixin theme-mode($mode: 'light') {
+    @if $mode == 'light' {
+      background-color: $light-bg;
+      color: $light-text;
+    } @else {
+      background-color: $dark-bg;
+      color: $dark-text;
+    }
+  }
+  
+  @mixin card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  }
+  

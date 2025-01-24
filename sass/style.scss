@@ -1,0 +1,213 @@
+// style.scss
+$primary-color: #007bff;
+$secondary-color: #6c757d;
+$dark-bg: #1a1a1a;
+$dark-text: #ffffff;
+$light-bg: #ffffff;
+$light-text: #212529;
+
+// Custom Bootstrap variables
+$theme-colors: (
+  "primary": $primary-color,
+  "secondary": $secondary-color
+);
+
+// Import Bootstrap with customizations
+@import "node_modules/bootstrap/scss/bootstrap";
+
+// Theme mode transitions
+body {
+  transition: background-color 0.3s, color 0.3s;
+  
+  &.light-mode {
+    background-color: $light-bg;
+    color: $light-text;
+  }
+  
+  &.dark-mode {
+    background-color: $dark-bg;
+    color: $dark-text;
+  }
+}
+
+.post-grid {
+  .card {
+      transition: transform 0.3s ease;
+      
+      &:hover {
+          transform: translateY(-5px);
+      }
+      
+      .card-title {
+          font-size: 1.4rem;
+          
+          a {
+              color: inherit;
+              text-decoration: none;
+              
+              &:hover {
+                  color: $primary-color;
+              }
+          }
+      }
+      
+      .card-meta {
+          font-size: 0.9rem;
+          color: $secondary-color;
+      }
+  }
+}
+
+.single-post {
+  .entry-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+  }
+  
+  .entry-meta {
+      font-size: 0.95rem;
+      color: $secondary-color;
+      margin-bottom: 2rem;
+  }
+  
+  .entry-content {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      
+      h2, h3, h4 {
+          margin-top: 2rem;
+          margin-bottom: 1rem;
+      }
+      
+      img {
+          max-width: 100%;
+          height: auto;
+      }
+      
+      blockquote {
+          border-left: 4px solid $primary-color;
+          padding-left: 1rem;
+          margin-left: 0;
+          font-style: italic;
+      }
+  }
+}
+
+// Dark mode specifics
+.dark-mode {
+  .card {
+      background-color: lighten($dark-bg, 5%);
+      border-color: lighten($dark-bg, 10%);
+  }
+  
+  .card-title a:hover {
+      color: lighten($primary-color, 15%);
+  }
+  
+  .entry-content {
+      blockquote {
+          border-left-color: lighten($primary-color, 15%);
+      }
+  }
+}
+
+.author-bio {
+    .author-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .author-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+}
+
+.related-posts {
+    .related-post {
+        img {
+            transition: opacity 0.3s ease;
+            
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.saxon-recent-posts {
+    .recent-post-item {
+        &:last-child {
+            margin-bottom: 0 !important;
+        }
+        
+        img {
+            transition: opacity 0.3s ease;
+            
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+        
+        .recent-post-title a {
+            color: inherit;
+            text-decoration: none;
+            
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+// Dark mode styles
+.dark-mode {
+    .author-bio,
+    .related-posts,
+    .saxon-recent-posts {
+        a:hover {
+            color: lighten($primary-color, 15%);
+        }
+    }
+}
+
+// TOD: Clean up the code and add comments
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+
+// Vendor
+@import '~bootstrap/scss/bootstrap';
+
+// Base
+@import 'base/reset';
+@import 'base/typography';
+@import 'base/utilities';
+
+// Components
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/widgets';
+
+// Layout
+@import 'layouts/header';
+@import 'layouts/footer';
+@import 'layouts/sidebar';
+
+// Pages
+@import 'pages/home';
+@import 'pages/single';
+@import 'pages/archive';
+
+// Theme modes
+@import 'themes/light';
+@import 'themes/dark';
