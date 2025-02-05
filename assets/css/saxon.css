@@ -1,0 +1,98 @@
+/* Base Styles */
+:root {
+    --background-light: #f8f9fa;
+    --text-light: #1a1a1a;
+    --border-light: #e5e7eb;
+}
+
+body {
+    @apply bg-gray-50;
+}
+
+/* Theme-specific styles */
+.theme-light {
+    --background: var(--background-light);
+    --text: var(--text-light);
+    --border: var(--border-light);
+}
+
+.theme-dark {
+    --background: #1a1a1a;
+    --text: #f8f9fa;
+    --border: #374151;
+}
+
+/* Menu Styles */
+.menu-primary-container ul {
+    @apply flex space-x-8;
+}
+
+.menu-primary-container li {
+    @apply relative;
+}
+
+.menu-primary-container a {
+    @apply text-gray-700 hover:text-blue-600 transition-colors duration-200;
+}
+
+.theme-dark .menu-primary-container a {
+    @apply text-gray-300 hover:text-blue-400;
+}
+
+/* Mobile Menu */
+#mobile-menu .menu-primary-container ul {
+    @apply flex flex-col space-y-1;
+}
+
+#mobile-menu .menu-primary-container a {
+    @apply block px-3 py-2 text-base font-medium rounded-md hover:bg-gray-100;
+}
+
+.theme-dark #mobile-menu .menu-primary-container a {
+    @apply hover:bg-gray-700;
+}
+
+/* Widget Styles */
+.widget {
+    @apply mb-8 last:mb-0;
+}
+
+.widget-title {
+    @apply text-lg font-bold text-gray-900 mb-4;
+}
+
+.theme-dark .widget-title {
+    @apply text-white;
+}
+
+/* Comments */
+.comment-list {
+    @apply space-y-6;
+}
+
+.comment {
+    @apply bg-white rounded-lg p-6;
+}
+
+.theme-dark .comment {
+    @apply bg-gray-800;
+}
+
+/* Post Content */
+.entry-content {
+    @apply prose max-w-none;
+}
+
+.theme-dark .entry-content {
+    @apply prose-invert;
+}
+
+/* Utility Classes */
+.screen-reader-text {
+    @apply sr-only;
+}
+
+/* Transitions */
+.theme-transition {
+    @apply transition-colors duration-200;
+}

@@ -1,0 +1,190 @@
+/* Base Carousel Container */
+.featured-carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Swiper Container */
+.featured-carousel .swiper {
+    width: 100%;
+    height: 70vh; /* Matches the height set in PHP */
+    min-height: 600px;
+}
+
+/* Image Handling */
+.featured-carousel .swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Progress Bar */
+.swiper-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.slide-progress-bar {
+    height: 100%;
+    background: linear-gradient(to right, #3b82f6, #6366f1);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 5000ms linear;
+}
+
+/* Navigation Arrows */
+.swiper-button-prev,
+.swiper-button-next {
+    width: 48px !important;
+    height: 48px !important;
+    margin-top: 0 !important;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    display: none;
+}
+
+/* Pagination */
+.swiper-pagination {
+    position: absolute;
+    bottom: 2rem !important;
+    left: 50% !important;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.swiper-pagination-bullet {
+    width: 8px !important;
+    height: 8px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+    width: 24px !important;
+    background-color: #fff !important;
+    border-radius: 4px !important;
+}
+
+/* Content Animations */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-swiper-animation="animate-fade-up"] {
+    animation: fadeUp 0.6s ease-out forwards;
+}
+
+/* Content Container */
+.featured-carousel .content-container {
+    position: relative;
+    z-index: 2;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .featured-carousel .content-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .featured-carousel .content-container {
+        padding: 0 2rem;
+    }
+}
+
+/* Image Zoom Effect */
+.swiper-zoom-container {
+    transition: transform 7s ease-out;
+}
+
+.swiper-slide-active .swiper-zoom-container {
+    transform: scale(1.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .featured-carousel .swiper {
+        height: 60vh;
+        min-height: 500px;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .featured-carousel h2 {
+        font-size: 2rem;
+        line-height: 1.2;
+    }
+}
+
+/* Dark Mode Support */
+.dark .featured-carousel .swiper-button-prev,
+.dark .featured-carousel .swiper-button-next {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Optional: Add a subtle text shadow to improve readability */
+.featured-carousel .post-content {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Ensure navigation arrows are always visible */
+.swiper-button-prev.swiper-button-disabled,
+.swiper-button-next.swiper-button-disabled {
+    opacity: 0.35 !important;
+    pointer-events: auto !important;
+    cursor: not-allowed !important;
+}
+
+/* Category Tag Styles */
+.featured-carousel .category-tag {
+    background-color: rgba(59, 130, 246, 0.9);
+    transition: background-color 0.3s ease;
+}
+
+.featured-carousel .category-tag:hover {
+    background-color: rgba(37, 99, 235, 1);
+}
+
+/* Read More Button Styles */
+.featured-carousel .read-more-button {
+    transition: transform 0.2s ease;
+}
+
+.featured-carousel .read-more-button:hover {
+    transform: translateY(-1px);
+}
