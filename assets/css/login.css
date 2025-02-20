@@ -1,0 +1,278 @@
+/* Login Page Styles */
+
+/* Body and Main Container */
+body.login {
+    background-color: #f3f4f6;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: block !important;
+    position: relative;
+}
+
+/* Main Wrapper */
+.language-switcher {
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1000;
+    text-align: center;
+}
+
+#login {
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    max-width: 400px;
+    width: calc(100% - 40px) !important;
+    box-sizing: border-box;
+    margin: 40px auto !important;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Logo */
+.login h1 {
+    margin-bottom: 24px !important;
+}
+
+.login h1 a {
+    background-size: contain !important;
+    background-position: center !important;
+    width: 100% !important;
+    height: 80px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+/* Form Styling */
+#loginform,
+#registerform,
+#lostpasswordform {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-top: 20px !important;
+}
+
+.login form .input {
+    font-size: 16px !important;
+    padding: 12px !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 8px !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin: 2px 0 16px !important;
+}
+
+.login form .input:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+    outline: none !important;
+}
+
+/* Language Switcher */
+.language-switcher {
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+.language-switcher select {
+    padding: 8px 12px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    background: #fff;
+    color: #374151;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    width: auto;
+}
+
+.language-switcher select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Submit Button */
+.wp-core-ui .button-primary {
+    background: #3b82f6 !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    padding: 0 24px !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    margin-top: 8px !important;
+}
+
+.wp-core-ui .button-primary:hover {
+    background: #2563eb !important;
+    transform: translateY(-1px);
+}
+
+.wp-core-ui .button-primary:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Remember Me Checkbox */
+.forgetmenot {
+    margin-bottom: 16px !important;
+}
+
+#rememberme {
+    border: 2px solid #e5e7eb !important;
+    border-radius: 4px !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+#rememberme:checked {
+    background: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+/* Links */
+.login #nav,
+.login #backtoblog {
+    text-align: center !important;
+    padding: 0 !important;
+    margin: 16px 0 0 !important;
+    color: #6b7280 !important;
+}
+
+.login #nav a,
+.login #backtoblog a {
+    color: #4b5563 !important;
+    font-size: 14px !important;
+    transition: color 0.2s ease !important;
+}
+
+.login #nav a:hover,
+.login #backtoblog a:hover {
+    color: #3b82f6 !important;
+}
+
+/* Error Messages */
+.login .message,
+.login #login_error {
+    background: #fff !important;
+    border-left: 4px solid #ef4444 !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    border-radius: 6px !important;
+    margin-bottom: 20px !important;
+}
+
+.login .message {
+    border-left-color: #10b981 !important;
+}
+
+/* Password Visibility Toggle */
+.wp-hide-pw {
+    color: #6b7280 !important;
+    margin-top: 3px !important;
+}
+
+.wp-hide-pw:hover {
+    color: #374151 !important;
+}
+
+/* Loading Animation */
+.wp-core-ui .button.loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.wp-core-ui .button.loading::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: button-loading-spinner 0.6s linear infinite;
+}
+
+@keyframes button-loading-spinner {
+    from { transform: rotate(0turn); }
+    to { transform: rotate(1turn); }
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    body.login {
+        background-color: #1a1a1a;
+    }
+
+    #login {
+        background: rgba(31, 41, 55, 0.95);
+    }
+
+    .login label,
+    .forgetmenot label {
+        color: #e5e7eb !important;
+    }
+
+    .login form .input,
+    .language-switcher select {
+        background: #374151 !important;
+        border-color: #4b5563 !important;
+        color: #e5e7eb !important;
+    }
+
+    .login form .input:focus,
+    .language-switcher select:focus {
+        border-color: #60a5fa !important;
+    }
+
+    #nav a, #backtoblog a {
+        color: #9ca3af !important;
+    }
+
+    #nav a:hover, #backtoblog a:hover {
+        color: #60a5fa !important;
+    }
+
+    .login .message,
+    .login #login_error {
+        background: #1f2937 !important;
+        color: #e5e7eb !important;
+    }
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 782px) {
+    #login {
+        padding: 24px;
+        margin: 20px auto !important;
+    }
+
+    .language-switcher {
+        margin-bottom: 10px;
+    }
+}
+
+/* Make sure everything stacks properly */
+@media screen and (max-width: 600px) {
+    #login {
+        width: calc(100% - 20px) !important;
+        padding: 20px;
+        margin: 10px auto !important;
+    }
+}

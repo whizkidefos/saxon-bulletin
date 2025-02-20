@@ -16,6 +16,9 @@ define('SAXON_URI', get_template_directory_uri());
 require_once SAXON_DIR . '/inc/featured-posts.php';
 require_once SAXON_DIR . '/inc/post-views.php';
 
+// Load login customizer
+require_once get_template_directory() . '/inc/login-customizer.php';
+
 /**
  * Theme Setup
  */
