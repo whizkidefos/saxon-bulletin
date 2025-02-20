@@ -1,0 +1,52 @@
+/* Theme Toggle Styles */
+:root {
+    /* Light theme variables */
+    --background: #ffffff;
+    --text-primary: #1a1a1a;
+    --text-secondary: #4b5563;
+    --border: #e5e7eb;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+    --background: #1a1a1a;
+    --text-primary: #f9fafb;
+    --text-secondary: #9ca3af;
+    --border: #374151;
+}
+
+/* Theme transition */
+body * {
+    @apply transition-colors duration-200;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    @apply p-2 rounded-md;
+    @apply text-gray-500 hover:text-gray-900;
+    @apply dark:text-gray-400 dark:hover:text-gray-100;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+/* Icons */
+.theme-toggle svg {
+    @apply w-5 h-5;
+    @apply transition-transform duration-200;
+}
+
+.theme-toggle:hover svg {
+    @apply transform scale-110;
+}
+
+/* Dark mode overrides */
+.theme-dark .prose {
+    @apply prose-invert;
+}
+
+.theme-dark .bg-white {
+    @apply bg-gray-900;
+}
+
+.theme-dark .border-gray-200 {
+    @apply border-gray-700;
+}

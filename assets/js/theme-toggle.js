@@ -1,43 +1,55 @@
+/**
+ * Theme Toggle Functionality
+ */
 document.addEventListener('DOMContentLoaded', function() {
-    const themeToggleButton = document.querySelector('.theme-toggle');
+    const themeToggleBtn = document.getElementById('theme-toggle');
     const darkIcon = document.getElementById('theme-toggle-dark-icon');
     const lightIcon = document.getElementById('theme-toggle-light-icon');
     const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const html = document.documentElement;
 
     function setTheme(theme) {
-        // Set data attribute and class for different styling hooks
-        document.documentElement.setAttribute('data-theme', theme);
-        document.documentElement.classList.remove('theme-light', 'theme-dark');
-        document.documentElement.classList.add(`theme-${theme}`);
+        // Set class on html element
+        html.classList.remove('theme-light', 'theme-dark');
+        html.classList.add(`theme-${theme}`);
 
-        // Store the preference
+        // Update data attribute (for CSS selectors)
+        html.setAttribute('data-theme', theme);
+
+        // Store preference
         localStorage.setItem('theme', theme);
 
         // Update icons
         if (theme === 'dark') {
-            lightIcon.classList.remove('hidden');
-            darkIcon.classList.add('hidden');
-        } else {
-            lightIcon.classList.add('hidden');
             darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
         }
+
+        // Dispatch event for other scripts
+        const event = new CustomEvent('themeChanged', { detail: { theme } });
+        html.dispatchEvent(event);
     }
 
-    // Initialize theme
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    } else {
-        setTheme(prefersDarkScheme.matches ? 'dark' : 'light');
+    // Handle initial theme
+    function initializeTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = prefersDarkScheme.matches ? 'dark' : 'light';
+        setTheme(savedTheme || systemTheme);
     }
 
-    // Handle click events
-    themeToggleButton.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
+    // Initialize theme when DOM loads
+    initializeTheme();
+
+    // Toggle theme on button click
+    themeToggleBtn?.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
         setTheme(currentTheme === 'dark' ? 'light' : 'dark');
     });
 
-    // Handle system preference changes
+    // Watch for system theme changes
     prefersDarkScheme.addEventListener('change', (e) => {
         if (!localStorage.getItem('theme')) {
             setTheme(e.matches ? 'dark' : 'light');

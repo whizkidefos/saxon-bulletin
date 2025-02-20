@@ -1,0 +1,95 @@
+/* Post Card Animations */
+.post-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Stagger the animations based on post index */
+.post-card:nth-child(1) { animation-delay: 0.1s; }
+.post-card:nth-child(2) { animation-delay: 0.2s; }
+.post-card:nth-child(3) { animation-delay: 0.3s; }
+.post-card:nth-child(4) { animation-delay: 0.4s; }
+.post-card:nth-child(5) { animation-delay: 0.5s; }
+.post-card:nth-child(n+6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Animations */
+.post-card {
+    transition: all 0.3s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Image Zoom Effect */
+.post-card .post-thumbnail img {
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.post-card:hover .post-thumbnail img {
+    transform: scale(1.05);
+}
+
+/* Category Tag Animation */
+.post-card .category-link {
+    transition: all 0.2s ease;
+}
+
+.post-card .category-link:hover {
+    transform: translateY(-1px);
+}
+
+/* Title Link Animation */
+.post-card .entry-title a {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size 0.3s;
+}
+
+.post-card .entry-title a:hover {
+    background-size: 100% 2px;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.post-card.loading {
+    animation: none;
+    background: linear-gradient(to right, #f6f7f8 8%, #edeef1 18%, #f6f7f8 33%);
+    background-size: 2000px 100%;
+    animation: shimmer 2s infinite linear;
+}
+
+/* Intersection Observer Animation */
+.post-card.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.post-card.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

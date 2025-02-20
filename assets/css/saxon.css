@@ -9,19 +9,6 @@ body {
     @apply bg-gray-50;
 }
 
-/* Theme-specific styles */
-.theme-light {
-    --background: var(--background-light);
-    --text: var(--text-light);
-    --border: var(--border-light);
-}
-
-.theme-dark {
-    --background: #1a1a1a;
-    --text: #f8f9fa;
-    --border: #374151;
-}
-
 /* Menu Styles */
 .menu-primary-container ul {
     @apply flex space-x-8;

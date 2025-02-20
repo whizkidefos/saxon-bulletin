@@ -36,18 +36,18 @@ get_header(); ?>
 
                     <div class="flex items-center space-x-6">
                         <div class="flex items-center space-x-4">
-                            <?php if ($avatar = get_avatar(get_the_author_meta('ID'), 48)): ?>
+                            <!--</?php if ($avatar = get_avatar(get_the_author_meta('ID'), 48)): ?>
                                 <div class="flex-shrink-0">
-                                    <?php echo str_replace('avatar', 'rounded-full ring-2 ring-white/20', $avatar); ?>
+                                    </?php echo str_replace('avatar', 'rounded-full ring-2 ring-white/20', $avatar); ?>
                                 </div>
-                            <?php endif; ?>
+                            </?php endif; ?>
                             
                             <div>
                                 <div class="font-medium text-white">
-                                    <?php the_author_posts_link(); ?>
+                                    </?php the_author_posts_link(); ?>
                                 </div>
                                 <div class="text-sm text-gray-300">
-                                    <?php echo get_the_date(); ?> · <?php echo saxon_reading_time(); ?> min read
+                                    </?php echo get_the_date(); ?> · --><?php echo saxon_reading_time(); ?> min read
                                 </div>
                             </div>
                         </div>
@@ -117,8 +117,8 @@ get_header(); ?>
             ]);
             ?>
         </div>
-
-        <?php get_template_part('components/post/social-share'); ?>
+        
+        <?php get_template_part('components/posts/social-share'); ?>
 
         <!-- Tags -->
         <?php

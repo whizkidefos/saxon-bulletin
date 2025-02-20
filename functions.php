@@ -61,6 +61,21 @@ function saxon_scripts() {
         SAXON_VERSION
     );
 
+    wp_enqueue_style(
+        'saxon-custom',
+        SAXON_URI . '/assets/css/theme.css',
+        [],
+        SAXON_VERSION
+    );
+
+    // Post animations
+    wp_enqueue_style(
+        'saxon-post-animations',
+        get_template_directory_uri() . '/assets/css/post-animations.css',
+        array(),
+        SAXON_VERSION
+    );
+
     // Scripts
     wp_enqueue_script(
         'saxon-theme-toggle',

@@ -62,22 +62,22 @@ if ($featured_posts->have_posts()): ?>
 
                                     <!-- Meta -->
                                     <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
-                                        <div class="flex items-center space-x-4">
-                                            <?php if ($avatar = get_avatar(get_the_author_meta('ID'), 40)): ?>
+                                        <!--<div class="flex items-center space-x-4">
+                                            </?php if ($avatar = get_avatar(get_the_author_meta('ID'), 40)): ?>
                                                 <div class="flex-shrink-0">
-                                                    <?php echo str_replace('avatar', 'rounded-full ring-2 ring-white/20', $avatar); ?>
+                                                    </?php echo str_replace('avatar', 'rounded-full ring-2 ring-white/20', $avatar); ?>
                                                 </div>
-                                            <?php endif; ?>
+                                            </?php endif; ?>
                                             
                                             <div>
                                                 <div class="font-medium text-white">
-                                                    <?php the_author(); ?>
+                                                    </?php the_author(); ?>
                                                 </div>
                                                 <div class="text-sm text-white/80">
-                                                    <?php echo get_the_date(); ?> · <?php echo saxon_reading_time(); ?>
+                                                    </?php echo get_the_date(); ?> · </?php echo saxon_reading_time(); ?>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>-->
 
                                         <a href="<?php the_permalink(); ?>" 
                                            class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-colors">

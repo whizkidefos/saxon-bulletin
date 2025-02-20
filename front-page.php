@@ -153,7 +153,10 @@
             if ($latest_posts->have_posts()):
                 while ($latest_posts->have_posts()): 
                     $latest_posts->the_post();
-                    get_template_part('components/posts/card');
+                    get_template_part('components/posts/card', null, [
+                        'view' => 'list', // Set default view to list
+                        'meta' => false    // Disable meta information
+                    ]);
                 endwhile;
                 wp_reset_postdata();
             endif;
