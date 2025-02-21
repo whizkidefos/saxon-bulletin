@@ -41,18 +41,18 @@ get_header(); ?>
 
                                     <div class="flex items-center space-x-6">
                                         <div class="flex items-center space-x-4">
-                                            <?php if ($avatar = get_avatar(get_the_author_meta('ID'), 48)): ?>
+                                            <!-- </?php if ($avatar = get_avatar(get_the_author_meta('ID'), 48)): ?>
                                                 <div class="flex-shrink-0">
-                                                    <?php echo str_replace('avatar', 'rounded-full ring-2 ring-white/20', $avatar); ?>
+                                                    </?php echo str_replace('avatar', 'rounded-full ring-2 ring-white/20', $avatar); ?>
                                                 </div>
-                                            <?php endif; ?>
+                                            </?php endif; ?> -->
                                             
                                             <div>
-                                                <div class="font-medium text-white">
-                                                    <?php the_author_posts_link(); ?>
-                                                </div>
+                                                <!-- <div class="font-medium text-white">
+                                                    </?php the_author_posts_link(); ?>
+                                                </div> -->
                                                 <div class="text-sm text-gray-300">
-                                                    <?php echo get_the_date(); ?> • <?php echo saxon_reading_time(); ?> min read
+                                                    <!-- </?php echo get_the_date(); ?> • --> <?php echo saxon_reading_time(); ?> min read
                                                 </div>
                                             </div>
                                         </div>
@@ -129,11 +129,36 @@ get_header(); ?>
             <!-- Sidebar -->
             <aside class="w-full lg:w-80 space-y-8">
                 <!-- Newsletter CTA -->
-                <?php get_template_part('components/newsletter/cta', null, [
-                    'style' => 'compact',
-                    'heading' => __('Get Weekly Updates', 'saxon'),
-                    'text' => __('Stay informed with our latest stories delivered straight to your inbox.', 'saxon'),
-                    'bg_class' => 'bg-white dark:bg-gray-800'
+                <?php get_template_part('components/newsletter/mini-cta', null, [
+                    'style' => 'sidebar',
+                    'heading' => __('Stay Updated', 'saxon'),
+                    'text' => __('Get our latest stories in your inbox', 'saxon'),
+                    'button_text' => __('Subscribe Now', 'saxon')
+                ]); ?>
+
+                <?php 
+                $affiliate_links = [
+                    [
+                        'title' => 'Start Your Blog Today',
+                        'description' => 'Get premium hosting with Bluehost, trusted by millions',
+                        'image' => 'https://via.placeholder.com/300x200',
+                        'url' => 'https://bluehost.com',
+                        'price' => '$2.95/mo',
+                        'discount' => '60% off'
+                    ],
+                    [
+                        'title' => 'Professional Writing Tools',
+                        'description' => 'Enhance your content with Grammarly Premium',
+                        'image' => 'https://via.placeholder.com/300x200',
+                        'url' => 'https://grammarly.com',
+                        'price' => '$12/mo',
+                        'discount' => '20% off annual'
+                    ]
+                ];
+
+                get_template_part('components/sidebar/affiliate-links', null, [
+                    'title' => __('Recommended Tools', 'saxon'),
+                    'links' => $affiliate_links
                 ]); ?>
 
                 <!-- Popular Posts -->
@@ -163,9 +188,9 @@ get_header(); ?>
                                                 <?php the_title(); ?>
                                             </a>
                                         </h4>
-                                        <span class="text-sm text-gray-500 dark:text-gray-400">
-                                            <?php echo get_the_date(); ?>
-                                        </span>
+                                        <!-- <span class="text-sm text-gray-500 dark:text-gray-400">
+                                            </?php echo get_the_date(); ?>
+                                        </span> -->
                                     </div>
                                 </div>
                             <?php endwhile; ?>

@@ -5,7 +5,7 @@
 ?>
     </main><!-- #content from header.php -->
     
-     <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+    <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Footer Widgets -->
             <div class="py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -50,8 +50,10 @@
                     wp_nav_menu([
                         'theme_location' => 'footer',
                         'container' => false,
-                        'menu_class' => 'space-y-2',
-                        'fallback_cb' => false,
+                        'menu_class' => 'space-y-3',
+                        'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+                        'link_before' => '<span class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">',
+                        'link_after' => '</span>'
                     ]);
                     ?>
                 </div>
@@ -61,60 +63,46 @@
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                         <?php esc_html_e('Categories', 'saxon'); ?>
                     </h3>
-                    <ul class="space-y-2">
-                        <?php
-                        wp_list_categories([
-                            'title_li' => '',
-                            'number' => 5,
-                            'orderby' => 'count',
-                            'order' => 'DESC',
-                            'show_count' => true,
-                        ]);
-                        ?>
-                    </ul>
+                    <?php
+                    $categories = get_categories([
+                        'orderby' => 'count',
+                        'order' => 'DESC',
+                        'number' => 6
+                    ]);
+
+                    if ($categories): ?>
+                        <ul class="space-y-3">
+                            <?php foreach ($categories as $category): ?>
+                                <li>
+                                    <a href="<?php echo esc_url(get_category_link($category->term_id)); ?>" 
+                                       class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400">
+                                        <?php echo esc_html($category->name); ?>
+                                        <span class="text-gray-400">(<?php echo $category->count; ?>)</span>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endif; ?>
                 </div>
 
-                <!-- Newsletter -->
+                <!-- Newsletter Mini CTA -->
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                        <?php esc_html_e('Newsletter', 'saxon'); ?>
-                    </h3>
-                    <p class="text-gray-600 dark:text-gray-300 mb-4">
-                        <?php esc_html_e('Subscribe to our newsletter for updates and exclusive content.', 'saxon'); ?>
-                    </p>
-                    <form class="newsletter-form">
-                        <div class="flex">
-                            <input type="email" 
-                                   placeholder="<?php esc_attr_e('Your email', 'saxon'); ?>"
-                                   class="flex-1 rounded-l-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white focus:border-blue-500 focus:ring-blue-500">
-                            <button type="submit" 
-                                    class="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                <?php esc_html_e('Subscribe', 'saxon'); ?>
-                            </button>
-                        </div>
-                    </form>
+                    <?php get_template_part('components/newsletter/mini-cta', null, [
+                        'style' => 'footer',
+                        'heading' => __('Newsletter', 'saxon'),
+                        'text' => __('Subscribe for weekly updates', 'saxon'),
+                        'button_text' => __('Join', 'saxon'),
+                        'bg_class' => 'bg-transparent'
+                    ]); ?>
                 </div>
             </div>
 
-            <!-- Footer Bottom -->
+            <!-- Copyright -->
             <div class="py-6 border-t border-gray-200 dark:border-gray-700">
-                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-                    <div class="text-gray-500 dark:text-gray-400 text-sm">
-                        © <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. 
-                        <?php esc_html_e('All rights reserved.', 'saxon'); ?>
-                    </div>
-                    <div class="flex space-x-6 text-sm text-gray-500 dark:text-gray-400">
-                        <a href="<?php echo get_privacy_policy_url(); ?>" class="hover:text-gray-900 dark:hover:text-gray-300">
-                            <?php esc_html_e('Privacy Policy', 'saxon'); ?>
-                        </a>
-                        <a href="#" class="hover:text-gray-900 dark:hover:text-gray-300">
-                            <?php esc_html_e('Terms of Service', 'saxon'); ?>
-                        </a>
-                        <a href="#" class="hover:text-gray-900 dark:hover:text-gray-300">
-                            <?php esc_html_e('Contact', 'saxon'); ?>
-                        </a>
-                    </div>
-                </div>
+                <p class="text-center text-gray-600 dark:text-gray-400">
+                    &copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. 
+                    <?php esc_html_e('All rights reserved.', 'saxon'); ?>
+                </p>
             </div>
         </div>
     </footer>

@@ -34,9 +34,9 @@ get_header(); ?>
                 <div class="relative">
                     <input type="search" 
                            id="posts-search"
-                           class="block w-full rounded-md border-gray-300 dark:border-gray-600 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm"
+                           class="block w-full rounded-md border-gray-300 dark:border-gray-600 pl-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm py-2"
                            placeholder="<?php esc_attr_e('Search articles...', 'saxon'); ?>">
-                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
                         <svg class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
@@ -46,7 +46,7 @@ get_header(); ?>
                 <!-- Category Filter -->
                 <div class="relative">
                     <select id="category-filter" 
-                            class="block w-full rounded-md border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm">
+                            class="block w-full rounded-md border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm py-2">
                         <option value=""><?php esc_html_e('All Categories', 'saxon'); ?></option>
                         <?php
                         $categories = get_categories([
@@ -68,7 +68,7 @@ get_header(); ?>
                 <!-- Sort Options -->
                 <div class="relative">
                     <select id="sort-options" 
-                            class="block w-full rounded-md border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm">
+                            class="block w-full rounded-md border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:text-white sm:text-sm py-2">
                         <option value="date-desc"><?php esc_html_e('Newest First', 'saxon'); ?></option>
                         <option value="date-asc"><?php esc_html_e('Oldest First', 'saxon'); ?></option>
                         <option value="title-asc"><?php esc_html_e('Title A-Z', 'saxon'); ?></option>
