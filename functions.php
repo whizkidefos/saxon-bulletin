@@ -430,3 +430,48 @@ function saxon_favicon() {
     echo '<link rel="apple-touch-icon" href="' . esc_url(get_template_directory_uri() . '/assets/images/apple-touch-icon.png') . '">';
 }
 add_action('wp_head', 'saxon_favicon');
+
+/**
+ * Add Footer Customizer Settings
+ */
+function saxon_footer_customizer_settings($wp_customize) {
+    // Footer Section
+    $wp_customize->add_section('saxon_footer', array(
+        'title'    => __('Footer Settings', 'saxon'),
+        'priority' => 120,
+    ));
+
+    // Footer About Text
+    $wp_customize->add_setting('saxon_footer_about', array(
+        'default'           => __('Saxon Bulletin is your trusted source for the latest news, insights, and stories that matter.', 'saxon'),
+        'sanitize_callback' => 'wp_kses_post',
+    ));
+
+    $wp_customize->add_control('saxon_footer_about', array(
+        'label'    => __('Footer About Text', 'saxon'),
+        'section'  => 'saxon_footer',
+        'type'     => 'textarea',
+    ));
+
+    // Social Media Links
+    $social_platforms = array(
+        'instagram' => __('Instagram URL', 'saxon'),
+        'pinterest' => __('Pinterest URL', 'saxon'),
+        'twitter'   => __('X (Twitter) URL', 'saxon'),
+        'facebook'  => __('Facebook URL', 'saxon'),
+    );
+
+    foreach ($social_platforms as $platform => $label) {
+        $wp_customize->add_setting("saxon_social_{$platform}", array(
+            'default'           => '',
+            'sanitize_callback' => 'esc_url_raw',
+        ));
+
+        $wp_customize->add_control("saxon_social_{$platform}", array(
+            'label'    => $label,
+            'section'  => 'saxon_footer',
+            'type'     => 'url',
+        ));
+    }
+}
+add_action('customize_register', 'saxon_footer_customizer_settings');
