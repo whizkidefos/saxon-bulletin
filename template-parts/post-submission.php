@@ -39,51 +39,72 @@
 
         <!-- Title Section -->
         <div class="form-section">
-            <label for="post_title" class="form-section-title">
-                <?php esc_html_e('Post Title', 'saxon'); ?> *
+            <label for="post_title" class="form-section-title flex items-center mb-2">
+                <?php esc_html_e('Post Title', 'saxon'); ?> 
+                <span class="text-red-500 ml-1">*</span>
+                <span id="title-length" class="ml-auto text-sm text-gray-500 dark:text-gray-400"></span>
             </label>
-            <div class="relative">
+            <div class="relative group">
                 <input type="text" 
                        name="post_title" 
                        id="post_title" 
                        required 
                        minlength="10"
-                       class="pr-12"
-                       placeholder="<?php esc_attr_e('Enter a descriptive title', 'saxon'); ?>">
-                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                    <span id="title-length" class="text-sm text-gray-400"></span>
+                       maxlength="100"
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                              focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                              placeholder-gray-400 dark:placeholder-gray-500
+                              transition duration-150 ease-in-out"
+                       placeholder="<?php esc_attr_e('Enter a descriptive title for your post', 'saxon'); ?>">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
                 </div>
             </div>
             <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                <?php esc_html_e('Make it specific and engaging. Minimum 10 characters.', 'saxon'); ?>
+                <?php esc_html_e('Create a clear, descriptive title that accurately represents your content.', 'saxon'); ?>
             </p>
         </div>
 
         <!-- Category Section -->
         <div class="form-section">
-            <label for="post_category" class="form-section-title">
-                <?php esc_html_e('Category', 'saxon'); ?> *
+            <label for="post_category" class="form-section-title flex items-center mb-2">
+                <?php esc_html_e('Category', 'saxon'); ?>
+                <span class="text-red-500 ml-1">*</span>
             </label>
-            <select name="post_category" 
-                    id="post_category" 
-                    required 
-                    class="pr-10">
-                <option value=""><?php esc_html_e('Select a category', 'saxon'); ?></option>
-                <?php
-                $categories = get_categories([
-                    'hide_empty' => false,
-                    'orderby'    => 'name',
-                    'order'      => 'ASC'
-                ]);
-                foreach ($categories as $category) {
-                    printf(
-                        '<option value="%s">%s</option>',
-                        esc_attr($category->term_id),
-                        esc_html($category->name)
-                    );
-                }
-                ?>
-            </select>
+            <div class="relative group">
+                <select name="post_category" 
+                        id="post_category" 
+                        required 
+                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                               bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                               focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                               transition duration-150 ease-in-out
+                               appearance-none">
+                    <option value=""><?php esc_html_e('Select a category', 'saxon'); ?></option>
+                    <?php
+                    $categories = get_categories([
+                        'hide_empty' => false,
+                        'orderby'    => 'name',
+                        'order'      => 'ASC'
+                    ]);
+                    foreach ($categories as $category) {
+                        printf(
+                            '<option value="%s">%s</option>',
+                            esc_attr($category->term_id),
+                            esc_html($category->name)
+                        );
+                    }
+                    ?>
+                </select>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </div>
+            </div>
             <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                 <?php esc_html_e('Choose the most relevant category for your content.', 'saxon'); ?>
             </p>
@@ -91,8 +112,10 @@
 
         <!-- Content Section -->
         <div class="form-section">
-            <label for="post_content" class="form-section-title">
-                <?php esc_html_e('Post Content', 'saxon'); ?> *
+            <label for="post_content" class="form-section-title flex items-center mb-2">
+                <?php esc_html_e('Post Content', 'saxon'); ?> 
+                <span class="text-red-500 ml-1">*</span>
+                <span id="content-length" class="ml-auto text-sm text-gray-500 dark:text-gray-400"></span>
             </label>
             <?php
             wp_editor('', 'post_content', [
@@ -108,76 +131,116 @@
                 <p class="text-sm text-gray-500 dark:text-gray-400">
                     <?php esc_html_e('Write your post content here. Minimum 100 characters required.', 'saxon'); ?>
                 </p>
-                <span id="content-length" class="text-sm text-gray-400"></span>
             </div>
         </div>
 
         <!-- Featured Image Section -->
         <div class="form-section">
-            <label class="form-section-title">
+            <label class="form-section-title flex items-center mb-2">
                 <?php esc_html_e('Featured Image', 'saxon'); ?>
+                <span class="text-sm text-gray-500 dark:text-gray-400 ml-2">(<?php esc_html_e('Recommended', 'saxon'); ?>)</span>
             </label>
-            <div class="file-upload-area" id="featured-image-upload">
-                <div class="text-center">
-                    <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
-                        <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" 
-                              stroke-width="2" 
-                              stroke-linecap="round" 
-                              stroke-linejoin="round"/>
-                    </svg>
-                    <div class="mt-4 flex text-sm text-gray-600 dark:text-gray-400">
-                        <label for="featured_image" class="relative cursor-pointer bg-white dark:bg-gray-800 rounded-md font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-blue-500">
-                            <span><?php esc_html_e('Upload a file', 'saxon'); ?></span>
-                            <input id="featured_image" 
-                                   name="featured_image" 
-                                   type="file" 
-                                   class="sr-only"
-                                   accept="image/*">
-                        </label>
-                        <p class="pl-1"><?php esc_html_e('or drag and drop', 'saxon'); ?></p>
+            <div class="file-upload-area group" id="featured-image-upload">
+                <div class="relative">
+                    <input type="file" 
+                           name="featured_image" 
+                           id="featured_image" 
+                           accept="image/*"
+                           class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                           aria-label="<?php esc_attr_e('Upload featured image', 'saxon'); ?>">
+                    
+                    <div class="upload-placeholder flex flex-col items-center justify-center p-8 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-800/50 group-hover:border-blue-500 transition-colors duration-200">
+                        <div class="mb-4">
+                            <svg class="w-12 h-12 text-gray-400 dark:text-gray-500 group-hover:text-blue-500 transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="text-center">
+                            <p class="text-sm font-medium text-blue-600 dark:text-blue-400">
+                                <?php esc_html_e('Click to upload', 'saxon'); ?>
+                            </p>
+                            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                <?php esc_html_e('PNG, JPG, GIF up to 5MB', 'saxon'); ?>
+                            </p>
+                        </div>
                     </div>
-                    <p class="text-xs text-gray-500 dark:text-gray-400">
-                        <?php esc_html_e('PNG, JPG, GIF up to 5MB', 'saxon'); ?>
-                    </p>
+
+                    <!-- Image Preview Container -->
+                    <div id="image-preview" class="hidden relative mt-4">
+                        <img src="" alt="<?php esc_attr_e('Preview', 'saxon'); ?>" class="max-w-full h-auto rounded-lg shadow-lg">
+                        <button type="button" 
+                                id="remove-image" 
+                                class="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full shadow-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
-                <div id="image-preview" class="hidden mt-4">
-                    <img src="" alt="" class="max-h-48 mx-auto rounded">
-                    <button type="button" 
-                            id="remove-image" 
-                            class="mt-2 text-sm text-red-600 dark:text-red-400 hover:text-red-500">
-                        <?php esc_html_e('Remove image', 'saxon'); ?>
-                    </button>
+                <div class="mt-2">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        <?php esc_html_e('Add a high-quality image to make your post more engaging.', 'saxon'); ?>
+                    </p>
                 </div>
             </div>
         </div>
 
         <!-- Author Info Section -->
         <div class="form-section">
-            <label for="author_name" class="form-section-title">
-                <?php esc_html_e('Your Name', 'saxon'); ?> *
+            <label for="author_name" class="form-section-title flex items-center mb-2">
+                <?php esc_html_e('Your Name', 'saxon'); ?> 
+                <span class="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" 
-                   name="author_name" 
-                   id="author_name" 
-                   required
-                   placeholder="<?php esc_attr_e('Enter your full name', 'saxon'); ?>">
-        </div>
-
-        <div class="form-section">
-            <label for="email" class="form-section-title">
-                <?php esc_html_e('Your Email', 'saxon'); ?> *
-            </label>
-            <input type="email" 
-                   name="email" 
-                   id="email" 
-                   required
-                   placeholder="<?php esc_attr_e('Enter your email address', 'saxon'); ?>">
+            <div class="relative group">
+                <input type="text" 
+                       name="author_name" 
+                       id="author_name" 
+                       required 
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                              focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                              placeholder-gray-400 dark:placeholder-gray-500
+                              transition duration-150 ease-in-out"
+                       placeholder="<?php esc_attr_e('Enter your full name', 'saxon'); ?>">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                </div>
+            </div>
             <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                <?php esc_html_e('We\'ll notify you when your post is published.', 'saxon'); ?>
+                <?php esc_html_e('Enter your full name as you would like it to appear on the post.', 'saxon'); ?>
             </p>
         </div>
 
-        <!-- Terms Acceptance -->
+        <div class="form-section">
+            <label for="email" class="form-section-title flex items-center mb-2">
+                <?php esc_html_e('Your Email', 'saxon'); ?> 
+                <span class="text-red-500 ml-1">*</span>
+            </label>
+            <div class="relative group">
+                <input type="email" 
+                       name="email" 
+                       id="email" 
+                       required 
+                       class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 
+                              bg-white dark:bg-gray-800 text-gray-900 dark:text-white
+                              focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                              placeholder-gray-400 dark:placeholder-gray-500
+                              transition duration-150 ease-in-out"
+                       placeholder="<?php esc_attr_e('Enter your email address', 'saxon'); ?>">
+                <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                </div>
+            </div>
+            <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                <?php esc_html_e('We\'ll use this email address to notify you when your post is published.', 'saxon'); ?>
+            </p>
+        </div>
+
+        <!-- Terms and Conditions -->
         <div class="form-section">
             <div class="flex items-start">
                 <div class="flex items-center h-5">
@@ -185,38 +248,44 @@
                            id="terms" 
                            name="terms" 
                            required
-                           class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                           class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-800 dark:checked:bg-blue-600">
                 </div>
-                <div class="ml-3 text-sm">
-                    <label for="terms" class="font-medium text-gray-700 dark:text-gray-200">
-                        <?php esc_html_e('I agree to the terms and conditions', 'saxon'); ?> *
-                    </label>
-                    <p class="text-gray-500 dark:text-gray-400">
-                        <?php 
-                        printf(
-                            esc_html__('By submitting this post, you agree to our %1$s and %2$s.', 'saxon'),
-                            '<a href="' . esc_url(get_privacy_policy_url()) . '" class="text-blue-600 dark:text-blue-400 hover:underline">' . esc_html__('Privacy Policy', 'saxon') . '</a>',
-                            '<a href="' . esc_url(home_url('/terms')) . '" class="text-blue-600 dark:text-blue-400 hover:underline">' . esc_html__('Terms of Service', 'saxon') . '</a>'
-                        );
-                        ?>
-                    </p>
-                </div>
+                <label for="terms" class="ml-3 text-sm">
+                    <span class="text-gray-700 dark:text-gray-300">
+                        <?php esc_html_e('I agree to the', 'saxon'); ?>
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400">
+                            <?php esc_html_e('Terms and Conditions', 'saxon'); ?>
+                        </a>
+                        <?php esc_html_e('and', 'saxon'); ?>
+                        <a href="#" class="font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400">
+                            <?php esc_html_e('Content Guidelines', 'saxon'); ?>
+                        </a>
+                    </span>
+                </label>
             </div>
         </div>
 
+        <!-- reCAPTCHA -->
+        <div class="form-section">
+            <?php if ($site_key = get_option('saxon_recaptcha_site_key')): ?>
+                <div class="g-recaptcha mb-4" data-sitekey="<?php echo esc_attr($site_key); ?>"></div>
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+            <?php endif; ?>
+        </div>
+
         <!-- Submit Button -->
-        <div class="flex items-center justify-end space-x-4">
-            <span class="text-sm text-gray-500 dark:text-gray-400" id="form-status"></span>
-            <button type="submit" class="submit-button" disabled>
-                <span class="flex items-center">
-                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white hidden" id="loading-spinner" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span id="submit-text">
-                        <?php esc_html_e('Submit Post', 'saxon'); ?>
-                    </span>
-                </span>
+        <div class="form-section">
+            <button type="submit" 
+                    class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white font-medium rounded-lg
+                           hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                           dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-offset-gray-900
+                           disabled:opacity-50 disabled:cursor-not-allowed
+                           transition duration-150 ease-in-out
+                           flex items-center justify-center space-x-2">
+                <span><?php esc_html_e('Submit Post', 'saxon'); ?></span>
+                <svg class="w-5 h-5 hidden" id="submit-spinner" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
             </button>
         </div>
     </form>
@@ -224,137 +293,161 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('#post-submission-form');
-    const titleInput = document.querySelector('#post_title');
-    const titleLength = document.querySelector('#title-length');
-    const contentLength = document.querySelector('#content-length');
+    const form = document.getElementById('post-submission-form');
+    const fileInput = document.getElementById('featured_image');
+    const imagePreview = document.getElementById('image-preview');
+    const previewImage = imagePreview.querySelector('img');
+    const removeButton = document.getElementById('remove-image');
     const submitButton = form.querySelector('button[type="submit"]');
-    const formStatus = document.querySelector('#form-status');
-    const loadingSpinner = document.querySelector('#loading-spinner');
-    const submitText = document.querySelector('#submit-text');
-    const imagePreview = document.querySelector('#image-preview');
-    const imageInput = document.querySelector('#featured_image');
-    const removeImageBtn = document.querySelector('#remove-image');
-    const uploadArea = document.querySelector('#featured-image-upload');
+    const submitSpinner = document.getElementById('submit-spinner');
 
-    // Title character count
-    titleInput.addEventListener('input', function() {
-        const length = this.value.length;
-        titleLength.textContent = `${length}/100`;
-        validateForm();
-    });
-
-    // Content character count
-    if (typeof tinyMCE !== 'undefined') {
-        tinyMCE.on('AddEditor', function(e) {
-            e.editor.on('input keyup', function() {
-                const content = e.editor.getContent().replace(/<[^>]*>/g, '');
-                const length = content.length;
-                contentLength.textContent = `${length}/1000`;
-                validateForm();
-            });
-        });
-    }
-
-    // Image preview
-    imageInput.addEventListener('change', function(e) {
+    // File Upload Preview
+    fileInput.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
-            if (file.size > 5 * 1024 * 1024) {
+            if (file.size > 5 * 1024 * 1024) { // 5MB limit
                 alert('<?php esc_html_e('File size must be less than 5MB', 'saxon'); ?>');
-                this.value = '';
+                fileInput.value = '';
                 return;
             }
-            
+
             const reader = new FileReader();
             reader.onload = function(e) {
-                imagePreview.querySelector('img').src = e.target.result;
+                previewImage.src = e.target.result;
                 imagePreview.classList.remove('hidden');
-                uploadArea.classList.add('border-blue-500', 'dark:border-blue-400');
-            }
+            };
             reader.readAsDataURL(file);
         }
     });
 
-    // Remove image
-    removeImageBtn.addEventListener('click', function() {
-        imageInput.value = '';
+    // Remove Image
+    removeButton.addEventListener('click', function() {
+        fileInput.value = '';
         imagePreview.classList.add('hidden');
-        uploadArea.classList.remove('border-blue-500', 'dark:border-blue-400');
+        previewImage.src = '';
     });
 
-    // Drag and drop
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        uploadArea.addEventListener(eventName, preventDefaults, false);
-    });
-
-    function preventDefaults(e) {
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
-    ['dragenter', 'dragover'].forEach(eventName => {
-        uploadArea.addEventListener(eventName, highlight, false);
-    });
-
-    ['dragleave', 'drop'].forEach(eventName => {
-        uploadArea.addEventListener(eventName, unhighlight, false);
-    });
-
-    function highlight(e) {
-        uploadArea.classList.add('border-blue-500', 'dark:border-blue-400');
-    }
-
-    function unhighlight(e) {
-        uploadArea.classList.remove('border-blue-500', 'dark:border-blue-400');
-    }
-
-    uploadArea.addEventListener('drop', handleDrop, false);
-
-    function handleDrop(e) {
-        const dt = e.dataTransfer;
-        const file = dt.files[0];
-
-        if (file && file.type.startsWith('image/')) {
-            imageInput.files = dt.files;
-            const event = new Event('change');
-            imageInput.dispatchEvent(event);
-        }
-    }
-
-    // Form validation
-    function validateForm() {
-        const title = titleInput.value;
-        const content = tinyMCE.activeEditor ? tinyMCE.activeEditor.getContent().replace(/<[^>]*>/g, '') : '';
-        const category = document.querySelector('#post_category').value;
-        const authorName = document.querySelector('#author_name').value;
-        const email = document.querySelector('#email').value;
-        const terms = document.querySelector('#terms').checked;
-
-        const isValid = title.length >= 10 && 
-                       content.length >= 100 && 
-                       category && 
-                       authorName && 
-                       email && 
-                       terms;
-
-        submitButton.disabled = !isValid;
-        formStatus.textContent = isValid ? '' : '<?php esc_html_e('Please fill in all required fields', 'saxon'); ?>';
-    }
-
-    // Form submission
+    // Form Submission
     form.addEventListener('submit', function(e) {
-        loadingSpinner.classList.remove('hidden');
-        submitText.textContent = '<?php esc_html_e('Submitting...', 'saxon'); ?>';
+        e.preventDefault();
+        
+        if (!form.checkValidity()) {
+            return;
+        }
+
         submitButton.disabled = true;
+        submitSpinner.classList.remove('hidden');
+
+        // Simulate form submission (replace with actual submission logic)
+        setTimeout(() => {
+            form.submit();
+        }, 1000);
     });
 
-    // Listen to all form field changes
-    form.querySelectorAll('input, select, textarea').forEach(element => {
-        element.addEventListener('change', validateForm);
+    // Character Counter for Title
+    const titleInput = document.getElementById('post_title');
+    const titleLength = document.getElementById('title-length');
+    
+    titleInput.addEventListener('input', function() {
+        const remaining = 100 - this.value.length;
+        titleLength.textContent = `${remaining} ${remaining === 1 ? 'character' : 'characters'} remaining`;
+        
+        if (remaining <= 10) {
+            titleLength.classList.add('text-red-500');
+        } else {
+            titleLength.classList.remove('text-red-500');
+        }
     });
-
-    // Initial validation
-    validateForm();
 });
 </script>
+
+<style>
+/* Enhanced form field focus states */
+.post-submission-form input:focus-visible,
+.post-submission-form select:focus-visible,
+.post-submission-form textarea:focus-visible {
+    @apply outline-none ring-2 ring-blue-500 border-transparent;
+}
+
+/* Custom select styling */
+.post-submission-form select {
+    background-image: none;
+}
+
+/* Floating labels animation */
+.post-submission-form .form-section-title {
+    @apply transform transition-all duration-200;
+}
+
+.post-submission-form input:focus + .form-section-title,
+.post-submission-form select:focus + .form-section-title,
+.post-submission-form textarea:focus + .form-section-title {
+    @apply text-blue-600 dark:text-blue-400;
+}
+
+/* Input field hover effects */
+.post-submission-form input:hover,
+.post-submission-form select:hover,
+.post-submission-form textarea:hover {
+    @apply border-gray-400 dark:border-gray-500;
+}
+
+/* Required field indicators */
+.post-submission-form .required::after {
+    content: "*";
+    @apply text-red-500 ml-1;
+}
+
+/* Character counter styling */
+.post-submission-form .char-counter {
+    @apply text-sm text-gray-500 dark:text-gray-400 transition-all duration-200;
+}
+
+.post-submission-form .char-counter.near-limit {
+    @apply text-yellow-600 dark:text-yellow-400;
+}
+
+.post-submission-form .char-counter.at-limit {
+    @apply text-red-600 dark:text-red-400;
+}
+
+/* File upload area animations */
+.file-upload-area .upload-placeholder {
+    @apply transition-all duration-200 ease-in-out;
+}
+
+.file-upload-area:hover .upload-placeholder {
+    @apply border-blue-500 bg-blue-50 dark:bg-blue-900/10;
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#submit-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Image preview transitions */
+#image-preview {
+    @apply transition-all duration-200 ease-in-out;
+}
+
+#image-preview img {
+    @apply transition-transform duration-200 ease-in-out;
+}
+
+#image-preview:hover img {
+    @apply transform scale-[1.02];
+}
+
+/* Remove button hover effects */
+#remove-image {
+    @apply transition-all duration-200 ease-in-out opacity-0;
+}
+
+#image-preview:hover #remove-image {
+    @apply opacity-100;
+}
+</style>

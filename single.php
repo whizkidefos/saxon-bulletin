@@ -139,7 +139,7 @@ get_header(); ?>
                 <!-- Affiliate Links -->
                 <?php get_template_part('components/sidebar/affiliate-links', null, [
                     'title' => __('Recommended Tools', 'saxon'),
-                    'count' => 2,
+                    'count' => 3,
                     'category' => 'featured' // Optional: Filter by category
                 ]); ?>
 

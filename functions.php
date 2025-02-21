@@ -353,6 +353,69 @@ function saxon_queue_newsletter($template_id, $subscriber_ids) {
 }
 
 /**
+ * Register Affiliate Links Custom Post Type
+ */
+function saxon_register_affiliate_links() {
+    $labels = array(
+        'name'               => __('Affiliate Links', 'saxon'),
+        'singular_name'      => __('Affiliate Link', 'saxon'),
+        'add_new'           => __('Add New', 'saxon'),
+        'add_new_item'      => __('Add New Affiliate Link', 'saxon'),
+        'edit_item'         => __('Edit Affiliate Link', 'saxon'),
+        'new_item'          => __('New Affiliate Link', 'saxon'),
+        'view_item'         => __('View Affiliate Link', 'saxon'),
+        'search_items'      => __('Search Affiliate Links', 'saxon'),
+        'not_found'         => __('No affiliate links found', 'saxon'),
+        'not_found_in_trash'=> __('No affiliate links found in trash', 'saxon'),
+        'parent_item_colon' => '',
+        'menu_name'         => __('Affiliate Links', 'saxon')
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'           => true,
+        'show_in_menu'      => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'affiliate'),
+        'capability_type'   => 'post',
+        'has_archive'       => false,
+        'hierarchical'      => false,
+        'menu_position'     => 5,
+        'supports'          => array('title', 'editor', 'thumbnail', 'excerpt', 'custom-fields', 'page-attributes'),
+        'menu_icon'         => 'dashicons-money-alt'
+    );
+
+    register_post_type('affiliate_link', $args);
+
+    // Register Affiliate Category Taxonomy
+    $tax_labels = array(
+        'name'              => __('Categories', 'saxon'),
+        'singular_name'     => __('Category', 'saxon'),
+        'search_items'      => __('Search Categories', 'saxon'),
+        'all_items'         => __('All Categories', 'saxon'),
+        'parent_item'       => __('Parent Category', 'saxon'),
+        'parent_item_colon' => __('Parent Category:', 'saxon'),
+        'edit_item'        => __('Edit Category', 'saxon'),
+        'update_item'      => __('Update Category', 'saxon'),
+        'add_new_item'     => __('Add New Category', 'saxon'),
+        'new_item_name'    => __('New Category Name', 'saxon'),
+        'menu_name'        => __('Categories', 'saxon')
+    );
+
+    register_taxonomy('affiliate_category', 'affiliate_link', array(
+        'hierarchical'      => true,
+        'labels'           => $tax_labels,
+        'show_ui'          => true,
+        'show_admin_column'=> true,
+        'query_var'        => true,
+        'rewrite'          => array('slug' => 'affiliate-category')
+    ));
+}
+add_action('init', 'saxon_register_affiliate_links');
+
+/**
  * Add custom favicon
  */
 function saxon_favicon() {
