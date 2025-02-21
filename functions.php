@@ -16,8 +16,19 @@ define('SAXON_URI', get_template_directory_uri());
 require_once SAXON_DIR . '/inc/featured-posts.php';
 require_once SAXON_DIR . '/inc/post-views.php';
 
+// Load newsletter system
+require_once SAXON_DIR . '/inc/newsletter/loader.php';
+
 // Load login customizer
 require_once get_template_directory() . '/inc/login-customizer.php';
+
+// Initialize post submission functionality
+require_once get_template_directory() . '/inc/post-submission.php';
+add_action('init', 'saxon_init_post_submission');
+
+function saxon_init_post_submission() {
+    Saxon_Post_Submission::get_instance();
+}
 
 /**
  * Theme Setup
@@ -243,4 +254,94 @@ function saxon_posted_by() {
         esc_url(get_author_posts_url(get_the_author_meta('ID'))),
         esc_html(get_the_author())
     );
+}
+
+// Newsletter functions
+function saxon_add_admin_menu() {
+    add_menu_page(
+        'Newsletter', 
+        'Newsletter', 
+        'manage_options',
+        'saxon-newsletter',
+        'saxon_newsletter_dashboard',
+        'dashicons-email',
+        30
+    );
+
+    add_submenu_page(
+        'saxon-newsletter',
+        'Subscribers',
+        'Subscribers',
+        'manage_options',
+        'saxon-newsletter-subscribers',
+        'saxon_subscribers_page'
+    );
+
+    add_submenu_page(
+        'saxon-newsletter',
+        'Templates',
+        'Templates',
+        'manage_options',
+        'saxon-newsletter-templates',
+        'saxon_templates_page'
+    );
+
+    add_submenu_page(
+        'saxon-newsletter',
+        'Analytics',
+        'Analytics',
+        'manage_options',
+        'saxon-newsletter-analytics',
+        'saxon_analytics_page'
+    );
+}
+add_action('admin_menu', 'saxon_add_admin_menu');
+
+// Cron jobs for newsletter
+function saxon_schedule_newsletter_cron() {
+    if (!wp_next_scheduled('saxon_send_newsletter')) {
+        wp_schedule_event(time(), 'weekly', 'saxon_send_newsletter');
+    }
+}
+add_action('wp_loaded', 'saxon_schedule_newsletter_cron');
+
+function saxon_send_newsletter() {
+    do_action('saxon_process_newsletter');
+}
+add_action('saxon_send_newsletter', 'saxon_send_newsletter');
+
+// Newsletter settings
+function saxon_newsletter_settings() {
+    return [
+        'from_name' => get_option('saxon_newsletter_from_name', get_bloginfo('name')),
+        'from_email' => get_option('saxon_newsletter_from_email', get_bloginfo('admin_email')),
+        'reply_to' => get_option('saxon_newsletter_reply_to'),
+        'frequency_options' => ['daily', 'weekly', 'monthly'],
+        'max_sends_per_hour' => get_option('saxon_newsletter_max_sends_per_hour', 100),
+    ];
+}
+
+function saxon_register_settings() {
+    register_setting('saxon_newsletter', 'saxon_newsletter_from_name');
+    register_setting('saxon_newsletter', 'saxon_newsletter_from_email');
+    register_setting('saxon_newsletter', 'saxon_newsletter_reply_to');
+    register_setting('saxon_newsletter', 'saxon_newsletter_max_sends_per_hour');
+}
+add_action('admin_init', 'saxon_register_settings');
+
+// Queue System for Large Lists
+function saxon_queue_newsletter($template_id, $subscriber_ids) {
+    global $wpdb;
+    
+    foreach ($subscriber_ids as $subscriber_id) {
+        $wpdb->insert(
+            $wpdb->prefix . 'newsletter_queue',
+            [
+                'subscriber_id' => $subscriber_id,
+                'template_id' => $template_id,
+                'scheduled_time' => current_time('mysql'),
+                'status' => 'pending'
+            ]
+        );
+    }
 }

@@ -1,0 +1,25 @@
+
+                    <style>
+            body { font-family: -apple-system, system-ui, sans-serif; line-height: 1.5; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { text-align: center; padding: 20px 0; }
+            .content { background: #fff; padding: 20px; border-radius: 8px; }
+            .footer { text-align: center; padding: 20px 0; font-size: 12px; color: #666; }
+            .button { display: inline-block; padding: 10px 20px; background: #3B82F6; color: #fff; text-decoration: none; border-radius: 4px; }
+        </style>
+                    <div class="container">
+                        <div class="header">
+                            <h1>Monthly Newsletter</h1>
+                        </div>
+                        <div class="content">
+                            <p>Hello {{subscriber_name}},</p>
+                            <p>Here's what you might have missed this month:</p>
+                            {{popular_posts}}
+                            {{category_highlights}}
+                        </div>
+                        <div class="footer">
+                            <p>You're receiving this email because you subscribed to our newsletter.</p>
+                            <p><a href="{{unsubscribe_url}}">Unsubscribe</a></p>
+                        </div>
+                    </div>
+                

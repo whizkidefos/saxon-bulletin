@@ -1,0 +1,191 @@
+/* Newsletter Admin Styles */
+
+/* Stats Boxes */
+.saxon-newsletter-stats {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.stat-box {
+    background: #fff;
+    border: 1px solid #ccd0d4;
+    padding: 20px;
+    border-radius: 4px;
+    flex: 1;
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin: 0 0 10px 0;
+    color: #23282d;
+    font-size: 14px;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2271b1;
+}
+
+/* Status Indicators */
+.status-verified,
+.status-pending {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-verified {
+    background-color: #e6f4ea;
+    color: #28a745;
+    font-weight: 600;
+}
+
+.status-pending {
+    background-color: #fff3cd;
+    color: #ffc107;
+    font-weight: 600;
+}
+
+/* Category Tags */
+.category-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f0f0f1;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+}
+
+/* Action Links */
+.row-actions {
+    color: #666;
+    padding: 2px 0;
+}
+
+.row-actions span {
+    padding: 0 4px;
+}
+
+.row-actions .delete a {
+    color: #b32d2e;
+}
+
+.row-actions .resend a {
+    color: #2271b1;
+}
+
+/* Table Improvements */
+.wp-list-table th {
+    font-weight: 600;
+}
+
+.wp-list-table td {
+    vertical-align: middle;
+}
+
+/* Pagination */
+.tablenav-pages {
+    float: right;
+    margin: 0 0 9px;
+}
+
+.tablenav-pages .page-numbers {
+    display: inline-block;
+    min-width: 28px;
+    padding: 0 4px;
+    color: #2271b1;
+    background: #f0f0f1;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.7;
+}
+
+.tablenav-pages .page-numbers.current {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+    .saxon-newsletter-stats {
+        flex-direction: column;
+    }
+    
+    .stat-box {
+        margin-bottom: 10px;
+    }
+}
+
+/* Newsletter Admin Styles */
+.newsletter-preview {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.preview-actions {
+    margin-bottom: 15px;
+}
+
+.preview-actions .button {
+    margin-right: 10px;
+}
+
+#preview-frame {
+    width: 100%;
+    min-height: 500px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+/* Subscriber Table */
+.wp-list-table .column-email {
+    width: 30%;
+}
+
+.wp-list-table .column-name {
+    width: 20%;
+}
+
+.wp-list-table .column-date {
+    width: 15%;
+}
+
+.wp-list-table .column-status {
+    width: 15%;
+}
+
+.wp-list-table .column-frequency {
+    width: 15%;
+}
+
+/* Settings Page */
+.newsletter-settings-section {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.newsletter-settings-section h2 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Template Preview */
+.template-preview {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}

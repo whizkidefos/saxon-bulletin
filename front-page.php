@@ -165,45 +165,14 @@
     </div>
 </section>
 
-<!-- Trending Posts Section -->
-<!--<//?php get_template_part('components/latest-trending-posts'); ?> -->
-
 <!-- Newsletter Section -->
-<section class="py-16 bg-gray-50 dark:bg-gray-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 p-8 md:p-12 overflow-hidden">
-            <!-- Background Pattern -->
-            <div class="absolute inset-0 opacity-10">
-                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <defs>
-                        <pattern id="dots" width="10" height="10" patternUnits="userSpaceOnUse">
-                            <circle cx="2" cy="2" r="1" fill="currentColor"/>
-                        </pattern>
-                    </defs>
-                    <rect width="100" height="100" fill="url(#dots)"/>
-                </svg>
-            </div>
-
-            <div class="relative md:w-2/3">
-                <h2 class="text-3xl font-bold text-white mb-4">
-                    <?php esc_html_e('Stay in the Loop', 'saxon'); ?>
-                </h2>
-                <p class="text-xl text-blue-100 mb-8">
-                    <?php esc_html_e('Subscribe to our newsletter and never miss our latest stories and updates.', 'saxon'); ?>
-                </p>
-
-                <form class="flex flex-col sm:flex-row gap-4">
-                    <input type="email" 
-                           placeholder="<?php esc_attr_e('Enter your email', 'saxon'); ?>" 
-                           class="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <button type="submit" 
-                            class="px-6 py-3 bg-white text-blue-600 font-medium rounded-lg hover:bg-blue-50 transition">
-                        <?php esc_html_e('Subscribe', 'saxon'); ?>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+<?php
+    get_template_part('components/newsletter/cta', null, [
+        'style' => 'compact',
+        'heading' => __('Get Notified', 'saxon'),
+        'text' => __('Subscribe to receive notifications when your posts are published and stay updated with our latest content.', 'saxon'),
+        'bg_class' => 'bg-transparent'
+    ]); 
+?>
 
 <?php get_footer(); ?>

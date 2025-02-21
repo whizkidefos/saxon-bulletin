@@ -28,7 +28,27 @@
         ]);
         ?>
         
-        <?php get_template_part('components/header/theme-toggle'); ?>
+        <?php
+        // Submit Post Button
+        $submit_page = get_page_by_path('submit-post');
+        if ($submit_page): ?>
+            <a href="<?php echo get_permalink($submit_page); ?>" 
+               class="ml-4 inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                     class="h-5 w-5 mr-1.5" 
+                     fill="none" 
+                     viewBox="0 0 24 24" 
+                     stroke="currentColor">
+                    <path stroke-linecap="round" 
+                          stroke-linejoin="round" 
+                          stroke-width="2" 
+                          d="M12 4v16m8-8H4" />
+                </svg>
+                <?php _e('Submit Post', 'saxon'); ?>
+            </a>
+        <?php endif; ?>
+        
+        <!-- </?php get_template_part('components/header/theme-toggle'); ?> -->
     </div>
 
     <!-- Mobile menu button -->
@@ -62,5 +82,14 @@
             'fallback_cb'    => false,
         ]);
         ?>
+        
+        <?php if ($submit_page): ?>
+            <div class="px-2 pt-2 pb-3">
+                <a href="<?php echo get_permalink($submit_page); ?>" 
+                   class="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                    <?php _e('Submit Post', 'saxon'); ?>
+                </a>
+            </div>
+        <?php endif; ?>
     </div>
 </div>

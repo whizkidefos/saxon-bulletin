@@ -41,7 +41,7 @@ if ($latest_posts->have_posts()): ?>
                 <?php
                 while ($latest_posts->have_posts()): 
                     $latest_posts->the_post();
-                    get_template_part('components/post/card');
+                    get_template_part('components/posts/card');
                 endwhile;
                 wp_reset_postdata();
                 ?>
