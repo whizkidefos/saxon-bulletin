@@ -136,29 +136,11 @@ get_header(); ?>
                     'button_text' => __('Subscribe Now', 'saxon')
                 ]); ?>
 
-                <?php 
-                $affiliate_links = [
-                    [
-                        'title' => 'Start Your Blog Today',
-                        'description' => 'Get premium hosting with Bluehost, trusted by millions',
-                        'image' => 'https://via.placeholder.com/300x200',
-                        'url' => 'https://bluehost.com',
-                        'price' => '$2.95/mo',
-                        'discount' => '60% off'
-                    ],
-                    [
-                        'title' => 'Professional Writing Tools',
-                        'description' => 'Enhance your content with Grammarly Premium',
-                        'image' => 'https://via.placeholder.com/300x200',
-                        'url' => 'https://grammarly.com',
-                        'price' => '$12/mo',
-                        'discount' => '20% off annual'
-                    ]
-                ];
-
-                get_template_part('components/sidebar/affiliate-links', null, [
+                <!-- Affiliate Links -->
+                <?php get_template_part('components/sidebar/affiliate-links', null, [
                     'title' => __('Recommended Tools', 'saxon'),
-                    'links' => $affiliate_links
+                    'count' => 2,
+                    'category' => 'featured' // Optional: Filter by category
                 ]); ?>
 
                 <!-- Popular Posts -->

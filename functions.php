@@ -31,6 +31,12 @@ function saxon_init_post_submission() {
 }
 
 /**
+ * Include Affiliate Management System
+ */
+require get_template_directory() . '/inc/affiliate/post-types.php';
+require get_template_directory() . '/inc/affiliate/tracking.php';
+
+/**
  * Theme Setup
  */
 function saxon_theme_setup() {
@@ -345,3 +351,19 @@ function saxon_queue_newsletter($template_id, $subscriber_ids) {
         );
     }
 }
+
+/**
+ * Add custom favicon
+ */
+function saxon_favicon() {
+    $favicon_url = get_template_directory_uri() . '/assets/images/favicon.svg';
+    
+    echo '<link rel="icon" type="image/svg+xml" href="' . esc_url($favicon_url) . '">';
+    
+    // Fallback for browsers that don't support SVG favicons
+    echo '<link rel="alternate icon" type="image/png" href="' . esc_url(get_template_directory_uri() . '/assets/images/favicon.png') . '">';
+    
+    // For iOS/macOS
+    echo '<link rel="apple-touch-icon" href="' . esc_url(get_template_directory_uri() . '/assets/images/apple-touch-icon.png') . '">';
+}
+add_action('wp_head', 'saxon_favicon');

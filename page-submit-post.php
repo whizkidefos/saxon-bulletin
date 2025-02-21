@@ -6,8 +6,40 @@
 get_header();
 ?>
 
-<div class="site-content bg-gray-50 dark:bg-gray-900">
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 pb-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Progress Steps -->
+        <div class="mb-12">
+            <div class="flex justify-center items-center space-x-8">
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full">
+                        1
+                    </div>
+                    <span class="ml-2 text-sm font-medium text-gray-900 dark:text-white">
+                        <?php esc_html_e('Write', 'saxon'); ?>
+                    </span>
+                </div>
+                <div class="flex-1 h-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-8 h-8 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full">
+                        2
+                    </div>
+                    <span class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                        <?php esc_html_e('Review', 'saxon'); ?>
+                    </span>
+                </div>
+                <div class="flex-1 h-0.5 bg-gray-200 dark:bg-gray-700"></div>
+                <div class="flex items-center">
+                    <div class="flex items-center justify-center w-8 h-8 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full">
+                        3
+                    </div>
+                    <span class="ml-2 text-sm font-medium text-gray-500 dark:text-gray-400">
+                        <?php esc_html_e('Publish', 'saxon'); ?>
+                    </span>
+                </div>
+            </div>
+        </div>
+
         <!-- Page Header -->
         <div class="text-center mb-8">
             <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -18,6 +50,22 @@ get_header();
                     <?php the_content(); ?>
                 </div>
             <?php endwhile; endif; ?>
+        </div>
+
+        <!-- Guidelines Card -->
+        <div class="mb-8 bg-white dark:bg-gray-800 shadow-sm rounded-lg overflow-hidden">
+            <div class="p-4 bg-blue-50 dark:bg-blue-900 border-b border-blue-100 dark:border-blue-800">
+                <h2 class="text-lg font-semibold text-blue-900 dark:text-blue-100">
+                    <?php esc_html_e('Submission Guidelines', 'saxon'); ?>
+                </h2>
+            </div>
+            <div class="p-4 text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                <p>✓ <?php esc_html_e('Write a clear, descriptive title (minimum 10 characters)', 'saxon'); ?></p>
+                <p>✓ <?php esc_html_e('Choose the most relevant category for your post', 'saxon'); ?></p>
+                <p>✓ <?php esc_html_e('Add high-quality content (minimum 100 characters)', 'saxon'); ?></p>
+                <p>✓ <?php esc_html_e('Include a featured image for better engagement', 'saxon'); ?></p>
+                <p>✓ <?php esc_html_e('Provide your email for notifications about your post', 'saxon'); ?></p>
+            </div>
         </div>
 
         <!-- Submission Form Card -->
@@ -72,6 +120,19 @@ get_header();
 
 .post-submission-form .form-section-title {
     @apply text-lg font-semibold text-gray-900 dark:text-white mb-4;
+}
+
+/* Style the WordPress editor */
+#wp-post_content-wrap {
+    @apply border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden;
+}
+
+#wp-post_content-editor-container {
+    @apply border-t border-gray-300 dark:border-gray-600;
+}
+
+.wp-editor-tabs {
+    @apply bg-gray-50 dark:bg-gray-800 border-b border-gray-300 dark:border-gray-600;
 }
 
 /* Responsive adjustments */

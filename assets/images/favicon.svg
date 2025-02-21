@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background Circle -->
+    <circle cx="256" cy="256" r="248" fill="#1E40AF" />
+    
+    <!-- Inner Circle (creates border effect) -->
+    <circle cx="256" cy="256" r="232" fill="#2563EB" />
+    
+    <!-- "S" Letter -->
+    <path d="M316 164C316 147.333 310.667 134 300 124C289.333 113.333 274 108 254 108H196V404H254C274 404 289.333 398.667 300 388C310.667 377.333 316 364 316 348M316 164V348M316 164C316 180.667 310.667 194 300 204C289.333 214.667 274 220 254 220H196M316 348C316 331.333 310.667 318 300 308C289.333 297.333 274 292 254 292H196" 
+          stroke="white" 
+          stroke-width="24" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+    
+    <!-- "B" Letter -->
+    <path d="M196 108V404M196 108H254C274 108 289.333 113.333 300 124C310.667 134 316 147.333 316 164C316 180.667 310.667 194 300 204C289.333 214.667 274 220 254 220M196 108V220M196 220H254M196 220V292M196 292H254C274 292 289.333 297.333 300 308C310.667 318 316 331.333 316 348C316 364 310.667 377.333 300 388C289.333 398.667 274 404 254 404H196V292" 
+          stroke="white" 
+          stroke-width="24" 
+          stroke-linecap="round" 
+          stroke-linejoin="round"/>
+</svg>
