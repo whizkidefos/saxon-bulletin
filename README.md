@@ -77,7 +77,7 @@ To mark a post as featured:
 ### Local Development
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/saxon-bulletin
+git clone https://github.com/whizkidefos/saxon-bulletin
 
 # Install dependencies
 npm install
