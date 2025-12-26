@@ -155,6 +155,16 @@ function saxon_scripts() {
         );
     }
 
+    // Single post content styling
+    if (is_single()) {
+        wp_enqueue_style(
+            'saxon-single-post',
+            get_template_directory_uri() . '/assets/css/single-post.css',
+            array('saxon-main'),
+            SAXON_VERSION
+        );
+    }
+
     if (is_singular() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
     }

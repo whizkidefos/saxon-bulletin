@@ -102,9 +102,13 @@ get_header(); ?>
                     <?php endif; ?>
 
                     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                        <div class="prose dark:prose-invert max-w-none">
+                        <!-- Article Content -->
+                        <div class="entry-content prose dark:prose-invert max-w-none">
                             <?php the_content(); ?>
                         </div>
+
+                        <!-- Social Share -->
+                        <?php get_template_part('components/posts/social-share'); ?>
 
                         <?php
                         // Post tags
